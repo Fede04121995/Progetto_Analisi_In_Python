@@ -24,3 +24,24 @@ print("\nValori mancanti:\n", df.isnull().sum())
 # Conteggio delle specie
 print("\nConteggio delle specie:")
 print(df['specie'].value_counts())
+
+# Branch 2 - Analisi approfondita
+print("\nMatrice di correlazione")
+print(df.corr())  
+
+plt.figure(figsize=(8, 6))
+sns.heatmap(df.corr(), annot=True, cmap='coolwarm', fmt=".2f", linewidths=0.5)
+plt.title("Matrice di Correlazione delle Variabili")
+plt.show()
+
+# Raggruppamenti per specie
+print("\n--- Raggruppamenti per specie ---")
+gruppo_specie = df.groupby('specie')
+print(gruppo_specie.size())
+
+# Confronto tra media e massimo per ogni caratteristica e specie
+print("\n--- Confronto tra valori medi e massimi per ogni caratteristica ---")
+confronto = gruppo_specie.agg(['mean', 'max'])
+print(confronto)
+
+
